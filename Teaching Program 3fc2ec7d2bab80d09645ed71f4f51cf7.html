@@ -1,0 +1,818 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Teaching/Program</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+	/* Paint a complete callout box on every PDF page fragment. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3fc2ec7d-2bab-80d0-9645-ed71f4f51cf7" class="page sans"><header><h1 class="page-title" dir="auto">Teaching/Program</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><p id="3fd2ec7d-2bab-80d4-b35e-c031bf2b0888" class="" dir="auto">
+</p><div id="3fd2ec7d-2bab-80ed-bf81-e5f453b6c1bf" class="column-list" data-notion-column-list="" dir="auto"><div id="3fd2ec7d-2bab-8077-b331-f53761075d7b" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-8062-935b-d76983cdea94" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-8066-b025-e7155e2429bd" class="" dir="auto">Guest lectures</p></div></aside></div><div id="3fd2ec7d-2bab-806f-8ed3-fb9f04640b6c" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80c1-bc6b-de4920a1cc11" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-80a9-b5b8-fc6c1fd8f069" class="" dir="auto">Seminars</p></div></aside></div><div id="3fd2ec7d-2bab-8003-8258-d00494ada453" style="width:33.33333333333333%" class="column" data-notion-column-ratio="0.3333333333333333" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-806d-b2ba-c08b72ae405e" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-8058-9a07-fa4133f3fb27" class="" dir="auto">Programs</p></div></aside></div></div><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80a8-93ab-ca9c4fa3806c" dir="ltr"><div style="width:100%"><details id="3fd2ec7d-2bab-805b-be8a-e1b0c7609832" open="" class="toggle" dir="auto"><summary>Structure →</summary><div class="indented"><ul id="3ff2ec7d-2bab-8034-b7be-c3766df200d0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Lecture title — the topic or title of the session.</li></ul><ul id="3ff2ec7d-2bab-8010-85fb-f3cfb689188b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Institution — college, university, or educational organization.</li></ul><ul id="3ff2ec7d-2bab-8047-b970-de5956231256" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Programme details — department, student group, event, or occasion.</li></ul><ul id="3ff2ec7d-2bab-80e5-805c-ebdc4dd55cd8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Date and audience — date, audience level, and approximate audience size if verified.</li></ul><ul id="3ff2ec7d-2bab-8016-9331-ec8d457ca267" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Session overview — two or three sentences explaining what was discussed.</li></ul><ul id="3ff2ec7d-2bab-805c-9289-e277af9cfa41" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Key learning areas — three to five concise topics covered.</li></ul><ul id="3ff2ec7d-2bab-800e-8542-e849fd846461" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Evidence — official event page, poster, photographs, certificate, or recording, if available.</li></ul></div></details><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-8024-8a2c-d26cd8fa12b1" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-80e7-9f7e-d7d45425490d" class="" dir="auto">Invite card for future opportunities </p></div></aside></div></aside><p id="3ff2ec7d-2bab-808a-ab09-d32521beaf28" class="" dir="auto">
+</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-80ad-9f87-cf457093a91b" dir="ltr"><div style="width:100%"><h1 id="3ff2ec7d-2bab-80e3-b7b7-cf7e20ad487c" class="" dir="auto"><strong><span style="border-bottom:0.05em solid">Lecturer in Digital Journalism → </span></strong>(<strong>Loyola Kaushal Kendra</strong>)</h1></div></aside><p id="3ff2ec7d-2bab-8049-aae5-f2520e94597d" class="" dir="auto">
+</p><div id="3ff2ec7d-2bab-80dc-a9d2-e7551a89276e" class="column-list" data-notion-column-list="" dir="auto"><div id="3ff2ec7d-2bab-80f4-a5a4-d783f6284ceb" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-809b-8270-d53a679c6dba" dir="ltr"><div style="width:100%"><figure id="3ff2ec7d-2bab-80db-a747-fa98e2943b60" class="image" data-notion-image="3.jpeg" dir="ltr"><a href="3.jpeg"><img style="width:960px" src="3.jpeg"/></a></figure></div></aside></div><div id="3ff2ec7d-2bab-807d-95ff-e30b3b7d4928" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-809a-9ab6-ed16cae8f00f" dir="ltr"><div style="width:100%"><figure id="3ff2ec7d-2bab-8020-902c-cdbfdb531b45" class="image" data-notion-image="1.jpeg" dir="ltr"><a href="1.jpeg"><img style="width:912px" src="1.jpeg"/></a></figure></div></aside><p id="3ff2ec7d-2bab-8059-9826-c5ea473e736a" class="" dir="auto">
+</p></div></div><p id="3ff2ec7d-2bab-8089-b44a-fa42175d846e" class="" dir="auto">
+</p><aside class="block-color-purple_background callout" data-notion-callout="" data-notion-callout-background="purple_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80eb-8ee4-eab2d85ede18" dir="ltr"><div style="width:100%"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80ed-a75e-e0a4d553d246" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-80df-a934-cc331b52737d" class="" dir="auto"><strong>The Journey</strong> →</p><ul id="3fd2ec7d-2bab-801c-bee2-d3502c79ba67" class="bulleted-list" dir="auto"><li style="list-style-type:disc">After stepping away from full-time employment to work as an independent journalist, I had been actively writing articles, series, and columns. </li></ul><ul id="3fd2ec7d-2bab-8093-aaaf-ea84d4271f50" class="bulleted-list" dir="auto"><li style="list-style-type:disc">I was presented with an opportunity in 2017 to teach Digital Journalism to students in the newly established &#x27;Kaushal Kendra&#x27; department at Loyola College. This proved to be not only a novel experience but also a deeply rewarding one.</li></ul></div></aside><p id="3ff2ec7d-2bab-80c6-becb-c94cec946c31" class="" dir="auto">
+</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-808d-a8ef-df17d78dbc66" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-8096-b0eb-cf84789d97a9" class="" dir="auto"><strong>The Process</strong> →</p><ul id="3fd2ec7d-2bab-8099-85bd-fc073a1853d1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">I truly enjoyed teaching students, engaging in discussions with them, and exchanging ideas and insights. It was a process of mutual learning. I also learned alongside with my students and for their benefit.</li></ul><ul id="3fd2ec7d-2bab-80e3-851f-d20d9b8f815f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Having worked across various domains in journalism, with a particular focus on the internet and technology, teaching a subject rooted in digital media felt both natural and fitting. </li></ul><ul id="3fd2ec7d-2bab-80ae-9adc-ebd5900be3ba" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The research I conducted for sourcing materials and reading texts to develop the curriculum further deepened my own understanding of digital technology and journalism.</li></ul></div></aside><p id="3ff2ec7d-2bab-8046-99ab-ecb304456ba7" class="" dir="auto">
+</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80f2-ab90-e71ded8b729c" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-80db-a1e7-c88fc25f1c1f" class="" dir="auto"><strong>Experience </strong>→</p><ul id="3fd2ec7d-2bab-8073-b466-c496bdf7f1f6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">I served as an honorary lecturer in Digital Journalism for nearly seven years, with about four of those years functioning effectively as a full-time role. In the year 2020 of the COVID-19 pandemic, I took on a full-time teaching position conducted entirely online, which continued until 2024.</li></ul></div></aside><p id="3ff2ec7d-2bab-80dc-9ecb-cb07e841e4fd" class="" dir="auto">
+</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-8051-a37f-d9d26e885356" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-8038-9d6c-da5ee8bbec47" class="" dir="auto"><strong>After Loyola</strong> →</p><ul id="3fd2ec7d-2bab-8022-98c0-d8348babacfd" class="bulleted-list" dir="auto"><li style="list-style-type:disc">As teaching began to take precedence, my writing work shifted to a part-time endeavor. </li></ul><ul id="3fd2ec7d-2bab-808f-b537-e353b43db048" class="bulleted-list" dir="auto"><li style="list-style-type:disc">I eventually stepped down from my lecturing position to refocus on my writing and the compilation of my work into books.</li></ul><ul id="3fd2ec7d-2bab-800e-a0c3-cae4bcd15398" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><mark class="highlight-orange" data-notion-highlight="orange">Nevertheless, I find that I truly miss the students and the classroom environment.</mark></li></ul><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-807b-b7cc-e26b8a215bc1" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-80eb-bc59-cfcdb3887f9c" class="" dir="auto"><mark class="highlight-orange" data-notion-highlight="orange"><span style="border-bottom:0.05em solid">→ (The following year, I had the opportunity to serve as a mentor and instructor for students specializing in Artificial Intelligence within a certificate program in Journalism, jointly conducted by Loyola College and the Government of Tamil Nadu.)</span></mark></p></div></aside></div></aside><p id="3ff2ec7d-2bab-8048-b216-dcac4bdffbd8" class="" dir="auto">
+</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80e8-b098-ef1b0d2b1ca6" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-803e-8a7e-d76bbfa18f05" class="" dir="auto"><strong>Takeaways </strong>→</p><ul id="3fd2ec7d-2bab-8062-8554-d71a4cd0ce2a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Even though those are not full-time roles, I gladly embrace every opportunity to teach whether through lectures, workshops, or special events.</li></ul><ul id="3fd2ec7d-2bab-807b-b6fd-f2111e05cb4a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><mark class="highlight-orange" data-notion-highlight="orange">Whenever I introduce myself, I always take pride and pleasure in mentioning that I am an honorary lecturer.</mark></li></ul><ul id="3fd2ec7d-2bab-8038-b1b6-d3443ed6f921" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><em>My gratitude goes to the students who made me a teacher.</em></li></ul><ul id="3fd2ec7d-2bab-80c6-9110-f30342e2f9d4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">My experience at Loyola Kaushal Kendra opened doors for me to teach at several other colleges as well. </li></ul><ul id="3fd2ec7d-2bab-8032-92bf-e57606f42af4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">I remain to this day, always open to opportunities to teach and engage in discussions with students.</li></ul></div></aside><p id="3ff2ec7d-2bab-80b2-be4b-d85370ab8f87" class="" dir="auto">
+</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80e3-ba03-e48fa6aa10b1" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-80d9-a73b-e979171d831e" class="" dir="auto"><strong>Wishes from Students →</strong></p><ul id="3fd2ec7d-2bab-8051-b5b5-fff5767e77b5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Generally, I have never particularly expected or felt especially excited by birthday wishes. However, during my time as a lecturer in Digital Journalism, receiving wishes from students on Teachers&#x27; Day brought me a level of joy I had never experienced before. This affection from my students has been a deeply moving experience. It is truly memorable that, even years later, some of my former students still remember me and send greetings on Teachers&#x27; Day.</li></ul><ul id="3fd2ec7d-2bab-8074-86a2-f004164741fe" class="bulleted-list" dir="auto"><li style="list-style-type:disc">When I visit colleges for various events and happen to run into former students—now pursuing higher studies or working in professional environments—the joy I feel when they recognize me and call out, &quot;That’s our &#x27;Sir&#x27;!&quot; is simply incomparable.</li></ul><p id="3fd2ec7d-2bab-80c6-a37c-e7ffec1621e0" class="" dir="auto">→ Thank you to all my students.</p></div></aside></div></aside><p id="3fd2ec7d-2bab-80bb-8463-e184ba2a4459" class="" dir="auto">
+</p><p id="3fd2ec7d-2bab-80bc-9dd3-dfbc9f742f54" class="" dir="auto">
+</p><p id="3fd2ec7d-2bab-807a-81c9-f9b630adcfc4" class="" dir="auto">
+</p><p id="3fd2ec7d-2bab-8065-88e5-de28150febf9" class="" dir="auto">
+</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80f3-8cac-dd9679556c1a" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-8040-ad81-d05f955abea1" class="" dir="auto"><strong>The Wonder of New Media →</strong></p><ul id="3fd2ec7d-2bab-804a-a9ab-d358d79a8c58" class="bulleted-list" dir="auto"><li style="list-style-type:disc">I feel that my experience as a college lecturer has transformed me into a researcher of Digital Journalism. </li></ul><ul id="3fd2ec7d-2bab-80d3-8577-d7dea34ad87f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Although I was already quite familiar with internet, digital-related technologies and trends, the course on &#x27;New Media Studies&#x27; my first teaching assignment in the field of media proved to be a major eye-opener.</li></ul><ul id="3fd2ec7d-2bab-80f6-8b92-f914ff17f337" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The books I sought out and studied to prepare for this course deepened my understanding of &#x27;new media&#x27; and intensified my own inquiry into the subject. Given that there is no definitive, final definition for what constitutes &#x27;new media,&#x27; I find myself still searching for the answer to that very question.</li></ul><ul id="3fd2ec7d-2bab-802b-886f-c88208cc2e26" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Modern perspectives on new media have further enriched my grasp of the internet and digital technologies, while also broadening my approach to reading beyond the purely technical aspects.</li></ul></div></aside><p id="3fd2ec7d-2bab-8074-aee2-fadd8b8cb582" class="" dir="auto">
+</p><aside class="block-color-purple_background callout" data-notion-callout="" data-notion-callout-background="purple_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80c5-941e-ed12115670a1" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-8001-8b6d-cc66e047b827" class="" dir="auto"><strong>A Handbook on Mobile Journalism →</strong></p><p id="3fd2ec7d-2bab-804b-b959-e7528dc8c09b" class="" dir="auto">I have always held a fascination and respect for mobile phones particularly regarding their profound social impact. In this context, the opportunity to teach &#x27;Mobile Journalism&#x27; as part of a digital journalism curriculum served as another significant eye-opener. </p><p id="3fd2ec7d-2bab-809c-8f2c-f1fee8f4082f" class="" dir="auto">While researching and curating material on mobile journalism for my students, I realized that this is emerging as a major new trend regarding this field. <mark class="highlight-orange" data-notion-highlight="orange">Inspired by the pioneering initiatives and case studies I encountered, I authored a guidebook on mobile journalism. </mark></p><p id="3fd2ec7d-2bab-80a1-9b17-e65c48830328" class="" dir="auto">Teaching this subject helped me forge a closer connection with my students and in turn helped them to connect more deeply with the subject.</p><p id="3fd2ec7d-2bab-809f-806d-e6b237ab42f8" class="" dir="auto"><mark class="highlight-orange" data-notion-highlight="orange">Similarly, the opportunity to teach &#x27;Convergent Journalism&#x27; a field where various media disciplines intersect offered a incomparable experience. I am currently considering writing a guidebook on this subject as well. </mark></p></div></aside><p id="3fd2ec7d-2bab-801c-8d03-e61e08c67a73" class="" dir="auto">
+</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80fa-86cc-d1c8d89a5e7a" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-8003-879b-de2a8dfecd74" class="" dir="auto"><strong>Invitations as a Guest Speaker →</strong></p><ul id="3fd2ec7d-2bab-80d3-8a82-ddc7f4ebc167" class="bulleted-list" dir="auto"><li style="list-style-type:disc">My experience serving as an honorary lecturer at the Kaushal Kendra department of Loyola College opened doors to various opportunities across different colleges. </li></ul><p id="3fd2ec7d-2bab-8054-8027-ddb42c6d82eb" class="" dir="auto">These experiences ranged from:</p><p id="3fd2ec7d-2bab-802a-b821-e2917e854e98" class="" dir="auto">→ Conducting journalism classes for English department students at a college in Avadi, Chennai, </p><p id="3fd2ec7d-2bab-8047-8187-c3103179a057" class="" dir="auto">→ Delivering a talk on Artificial Intelligence as part of a specialized program at the University of Madras’s Department of Journalism all of which proved to be truly enriching.</p></div></aside><p id="3fd2ec7d-2bab-80fb-ae1f-f94a0a0ab944" class="" dir="auto">
+</p><p id="3fd2ec7d-2bab-80be-a636-e3e89122af20" class="" dir="auto">
+</p><p id="3fd2ec7d-2bab-8065-b1d1-f66912de5b88" class="" dir="auto"><strong>Online News Handbook</strong></p><p id="3fd2ec7d-2bab-8064-bba8-f3ba1178784c" class="" dir="auto">Expanding upon a list of 25 media websites originally recommended to digital journalism students in the classroom, this &quot;Online News Handbook&quot; has been developed to introduce news platforms and web resources to anyone with an interest in journalism.</p><p id="3fd2ec7d-2bab-803e-9e55-d9d09e74ef91" class="" dir="auto">
+</p><p id="3fd2ec7d-2bab-80d2-9276-f4feb958d214" class="" dir="auto">
+</p><p id="3fd2ec7d-2bab-805e-aa12-e6549cb6a0f8" class="" dir="auto">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

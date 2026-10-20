@@ -1,0 +1,812 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Dad Profile</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+	/* Paint a complete callout box on every PDF page fragment. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3fc2ec7d-2bab-80fb-b4b1-c4af017925f8" class="page sans"><header><h1 class="page-title" dir="auto">Dad Profile</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><p id="3fc2ec7d-2bab-80bb-b1aa-f5cdea3aa777" class="" dir="auto">a</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-8089-802d-c69b4aafdfd0" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-80a3-b761-f8655e3cd0cc" class="" dir="auto">Content</p><figure id="3fd2ec7d-2bab-8069-b129-c5b01feac26d" class="link-to-page"><a href="Content%203fd2ec7d2bab8069b129c5b01feac26d.html" data-notion-page-id="3fd2ec7d-2bab-8069-b129-c5b01feac26d" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f">Content</a></figure><p id="3fd2ec7d-2bab-8072-8244-e21d7b2ad42a" class="" dir="auto">End</p></div></aside><p id="3fc2ec7d-2bab-8044-83f3-c7a99f7a67d5" class="" dir="auto">a</p><aside class="block-color-red_background callout" data-notion-callout="" data-notion-callout-background="red_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80d8-945e-ed91b708a52e" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-802f-a6bf-dd8ee13f0541" class="" dir="auto">Links and contact - phone  no | email id | about me wordpress | newsletter | youtube</p></div></aside><p id="3fc2ec7d-2bab-8037-a59c-d42e80cb26bd" class="" dir="auto">
+</p><p id="3ff2ec7d-2bab-80f5-a8dd-d8723deaa98a" class="" dir="auto">
+</p><div id="3ff2ec7d-2bab-8012-a0e8-ff21c595ab97" class="column-list" data-notion-column-list="" dir="auto"><div id="3ff2ec7d-2bab-801e-ad7b-e635034f22db" style="width:56.25%" class="column" data-notion-column-ratio="0.5625" dir="auto"><aside class="block-color-purple_background callout" data-notion-callout="" data-notion-callout-background="purple_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-80f4-9c63-f3661cd4e470" dir="ltr"><div style="width:100%"><p id="3ff2ec7d-2bab-8062-b715-f0a9c89b3e7d" class="" dir="auto">Independent Journalist, Technology Blogger, Columnist, Author of Books, Guest Lecturer who calls himself the chronicler of web and AI</p></div></aside><aside class="block-color-purple_background callout" data-notion-callout="" data-notion-callout-icon="☎️" data-notion-callout-background="purple_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-8063-b0ae-ff7d650e42e5" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="☎️"></span></div><div style="width:100%"><p id="3ff2ec7d-2bab-8081-8b26-ca8c8b7913ee" class="" dir="auto">Phone → +91 9360213314 </p></div></aside><aside class="block-color-purple_background callout" data-notion-callout="" data-notion-callout-icon="📧" data-notion-callout-background="purple_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-805f-bf9e-f23cb9e286cd" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📧"></span></div><div style="width:100%"><p id="3ff2ec7d-2bab-8047-a0b3-dcb994be4723" class="" dir="auto">Email → enarasimhan@gmail.com</p></div></aside><aside class="block-color-purple_background callout" data-notion-callout="" data-notion-callout-background="purple_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-805f-b89b-dac45d34ec95" dir="ltr"><div style="font-size:1.5em"><img class="icon" src="https://img.icons8.com/?size=100&amp;id=DrjvNUGrBiD4&amp;format=png&amp;color=000000"/></div><div style="width:100%"><p id="3ff2ec7d-2bab-80d9-894c-e5469b00df21" class="" dir="auto"><strong><a href="https://avinashnarasimhan1.github.io/newsguide-tamil/">News Guide in Tamil</a></strong></p></div></aside><aside class="block-color-purple_background callout" data-notion-callout="" data-notion-callout-background="purple_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-8085-9c89-c3f3eb5364dd" dir="ltr"><div style="font-size:1.5em"><img class="icon" src="https://img.icons8.com/?size=100&amp;id=DrjvNUGrBiD4&amp;format=png&amp;color=000000"/></div><div style="width:100%"><p id="3ff2ec7d-2bab-80b1-97e9-e1a9a76057ad" class="" dir="auto"><strong><a href="http://cybersimman.com">Cybersimman Blog</a></strong></p></div></aside><aside class="block-color-purple_background callout" data-notion-callout="" data-notion-callout-background="purple_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-8017-ac7e-d0da9d309d48" dir="ltr"><div style="font-size:1.5em"><img class="icon" src="https://img.icons8.com/?size=100&amp;id=DrjvNUGrBiD4&amp;format=png&amp;color=000000"/></div><div style="width:100%"><p id="3ff2ec7d-2bab-8053-aa1b-d0b493dc0236" class="" dir="auto"><strong><a href="https://cybersimman.substack.com/">Cybersimman&#x27;s Newsletter</a></strong></p></div></aside><aside class="block-color-purple_background callout" data-notion-callout="" data-notion-callout-icon="📸" data-notion-callout-background="purple_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-8078-a477-ec062271faaa" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📸"></span></div><div style="width:100%"><p id="3ff2ec7d-2bab-804b-b2dd-d67594a5b923" class="" dir="auto"><a href="https://www.youtube.com/@Cybersimman">Cybersimman&#x27;s Youtube Channel</a></p></div></aside><p id="3ff2ec7d-2bab-80e0-bab0-e6794b6f184f" class="" dir="auto">
+</p></div><div id="3ff2ec7d-2bab-80e2-a872-fc17d2593586" style="width:43.75%" class="column" data-notion-column-ratio="0.4375" dir="auto"><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-80d1-aa3a-d62d242a1fc4" dir="ltr"><div style="width:100%"><figure id="3ff2ec7d-2bab-80a5-8fba-c3d5972cd943" class="image" data-notion-image="5.jpg" dir="ltr"><a href="5.jpg"><img style="width:583.7750244140625px" src="5.jpg"/></a></figure></div></aside><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3ff2ec7d-2bab-802e-87ba-db29111f3b5b" dir="ltr"><div style="width:100%"><figure id="3ff2ec7d-2bab-80f1-a401-f1bbe9284b41" class="image" data-notion-image="4.jpeg" dir="ltr"><a href="4.jpeg"><img style="width:583.7750244140625px" src="4.jpeg"/></a></figure></div></aside></div></div><p id="3ff2ec7d-2bab-802f-8f86-f72783ec1e54" class="" dir="auto">
+</p><p id="3fd2ec7d-2bab-804e-a63d-ed91cc614c09" class="" dir="auto">
+</p><div id="3fd2ec7d-2bab-8073-afc2-f2c20b380439" class="column-list" data-notion-column-list="" dir="auto"><div id="3fd2ec7d-2bab-8055-a186-ebc1b2bb2cc5" style="width:4.166666666666666%" class="column" data-notion-column-ratio="0.041666666666666664" dir="auto"><p id="3fd2ec7d-2bab-80e6-b34c-dc597f24627b" class="" dir="auto">
+</p></div><div id="3fd2ec7d-2bab-806d-872b-fe6bb4fa01ff" style="width:91.66666666666669%" class="column" data-notion-column-ratio="0.9166666666666669" dir="auto"><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-802b-87d1-cf21dcc499c5" dir="ltr"><div style="width:100%"><figure id="3fd2ec7d-2bab-807a-ba09-f5ac49786399" class="equation" data-notion-equation="CAREER-TIMELINE" dir="auto"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.00773em;">REER</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.05764em;">ME</span><span class="mord mathnormal">L</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.05764em;">NE</span></span></span></span></span></div></figure></div></aside></div><div id="3fd2ec7d-2bab-8087-9e3f-ce89fe2ba78e" style="width:4.166666666666666%" class="column" data-notion-column-ratio="0.041666666666666664" dir="auto"><p id="3fd2ec7d-2bab-80f8-b93b-f0d77c7b7e04" class="" dir="auto">
+</p></div></div><div id="3fd2ec7d-2bab-807e-b5c5-e3cc2e64e9fc" class="column-list" data-notion-column-list="" dir="auto"><div id="3fd2ec7d-2bab-80ab-b8a8-e8c746f491bc" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80bf-8e18-dcfc9edb8097" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-8074-b774-e4a8113fd919" class="" dir="auto">Police cheithy investigative weekly →</p></div></aside><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-icon="🖥️" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80d9-994b-e54bb0692119" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="🖥️"></span></div><div style="width:100%"><p id="3fd2ec7d-2bab-80b7-9c0d-e54c20b48e11" class="" dir="auto"> Maalaisudar daily ( ASST– News Editor) →</p></div></aside><p id="3fd2ec7d-2bab-807a-a002-fae370d15ae2" class="" dir="auto">
+</p></div><div id="3fd2ec7d-2bab-807f-ac33-f27d18742232" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-805a-99c1-f36b0b9aa907" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-80f0-b6a0-c593587d2374" class="" dir="auto">worked in Swathesamithran Daily →</p></div></aside><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-icon="🖥️" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-804a-a38c-fb74a43c6e04" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="🖥️"></span></div><div style="width:100%"><p id="3fd2ec7d-2bab-80e9-b108-fd566bfc461e" class="" dir="auto"> India Today Tamil, Associate copy editor</p></div></aside></div><div id="3fd2ec7d-2bab-808e-a995-c44fe888fd98" style="width:33.33333333333333%" class="column" data-notion-column-ratio="0.3333333333333333" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-80cd-9572-d87571560fb0" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-80db-ae70-e0339bac891d" class="" dir="auto">Muthaleedu buisness magazine →</p></div></aside><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-8061-8380-dcc7a2a9c06c" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-807d-aa3f-d8f024600a0a" class="" dir="auto">
+</p></div></aside></div></div><p id="3fd2ec7d-2bab-8027-9da0-eb464b437dfd" class="" dir="auto">
+</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-802c-b0b5-cab817f44eed" dir="ltr"><div style="width:100%"><p id="3fc2ec7d-2bab-8091-a579-f62963c9a40d" class="" dir="auto">Skill sets section</p><figure id="3fd2ec7d-2bab-8057-9214-c19fe90f849e" class="link-to-page"><a href="Skill%20sets%20section%203fd2ec7d2bab80579214c19fe90f849e.html" data-notion-page-id="3fd2ec7d-2bab-8057-9214-c19fe90f849e" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f">Skill sets section</a></figure></div></aside><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-8094-ab92-fc9207d9fce1" dir="ltr"><div style="width:100%"><p id="3fc2ec7d-2bab-8012-846c-c7b74f23bf79" class="" dir="auto">How about a community building initiating somehow from here - ?</p></div></aside><div id="3fd2ec7d-2bab-8075-a05c-ee4c1da8bc50" class="column-list" data-notion-column-list="" dir="auto"><div id="3fd2ec7d-2bab-8012-9da5-ee39d5a79595" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-8038-88fd-f0a6afcb814c" dir="ltr"><div style="width:100%"><figure id="3fc2ec7d-2bab-8073-8cd6-eab28d9e5597" class="link-to-page"><a href="Featured%20works%203fc2ec7d2bab80738cd6eab28d9e5597.html" data-notion-page-id="3fc2ec7d-2bab-8073-8cd6-eab28d9e5597" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f">Featured works</a></figure></div></aside></div><div id="3fd2ec7d-2bab-80cd-b53b-e1b73ccbf514" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-800f-a5f9-ef81f36c11d7" dir="ltr"><div style="width:100%"><figure id="3fc2ec7d-2bab-808f-a714-dbeb35c30dfa" class="link-to-page"><a href="Series%203fc2ec7d2bab808fa714dbeb35c30dfa.html" data-notion-page-id="3fc2ec7d-2bab-808f-a714-dbeb35c30dfa" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f">Series</a></figure></div></aside></div><div id="3fd2ec7d-2bab-8023-9103-c77803b39b4f" style="width:33.33333333333333%" class="column" data-notion-column-ratio="0.3333333333333333" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-800e-8468-e8168cfcfaae" dir="ltr"><div style="width:100%"><figure id="3fc2ec7d-2bab-8036-a0b6-feb5ee4bfa45" class="link-to-page"><a href="Books%203fc2ec7d2bab8036a0b6feb5ee4bfa45.html" data-notion-page-id="3fc2ec7d-2bab-8036-a0b6-feb5ee4bfa45" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f"><span class="icon" data-emoji="📔"></span>Books</a></figure></div></aside></div></div><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-80f6-a287-f8318c86f353" dir="ltr"><div style="width:100%"><p id="3fc2ec7d-2bab-80c9-94e0-c05dbad74e7d" class="" dir="auto">Ebook seperate page or within books page?</p><p id="3fc2ec7d-2bab-80b5-b7d3-f52f2bd42a43" class="" dir="auto">Newsletter under books better - ? pages constraint</p></div></aside><div id="3fd2ec7d-2bab-80ce-a2ec-c617fa08456f" class="column-list" data-notion-column-list="" dir="auto"><div id="3fd2ec7d-2bab-80e3-8e82-efc4b2d8a487" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-80c2-a5a9-f30a3fd76f99" dir="ltr"><div style="width:100%"><figure id="3fc2ec7d-2bab-8071-aead-da30ae780336" class="link-to-page"><a href="Recommendations%203fc2ec7d2bab8071aeadda30ae780336.html" data-notion-page-id="3fc2ec7d-2bab-8071-aead-da30ae780336" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f">Recommendations</a></figure></div></aside></div><div id="3fd2ec7d-2bab-8061-863e-f38bde15aeaf" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-8059-a7cd-f7ad8609b4da" dir="ltr"><div style="width:100%"><figure id="3fc2ec7d-2bab-80d0-9645-ed71f4f51cf7" class="link-to-page"><a href="Teaching%20Program%203fc2ec7d2bab80d09645ed71f4f51cf7.html" data-notion-page-id="3fc2ec7d-2bab-80d0-9645-ed71f4f51cf7" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f">Teaching/Program</a></figure></div></aside></div></div><div id="3fd2ec7d-2bab-80a8-87fa-f652465c01c4" class="column-list" data-notion-column-list="" dir="auto"><div id="3fd2ec7d-2bab-8017-bd25-c3120a16e822" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-80ac-b01a-dd23c119ad07" dir="ltr"><div style="width:100%"><figure id="3fc2ec7d-2bab-80d5-ac36-d8181e4f269a" class="link-to-page"><a href="About%203fc2ec7d2bab80d5ac36d8181e4f269a.html" data-notion-page-id="3fc2ec7d-2bab-80d5-ac36-d8181e4f269a" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f">About </a></figure></div></aside></div><div id="3fd2ec7d-2bab-8081-97d6-d04c88892b8b" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-80a4-943e-f75c6233bcc8" dir="ltr"><div style="width:100%"><figure id="3fc2ec7d-2bab-8004-91ec-fb99032b5e1e" class="link-to-page"><a href="Contact%203fc2ec7d2bab800491ecfb99032b5e1e.html" data-notion-page-id="3fc2ec7d-2bab-8004-91ec-fb99032b5e1e" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f">Contact</a></figure></div></aside></div></div><p id="3fd2ec7d-2bab-8029-be6f-c1aa08c810aa" class="" dir="auto">
+</p><p id="3fd2ec7d-2bab-8048-90a9-ce8105c7512c" class="" dir="auto">
+</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fd2ec7d-2bab-8015-981f-ed660eac0ac7" dir="ltr"><div style="width:100%"><p id="3fd2ec7d-2bab-8010-9986-e4cdd1377d6d" class="" dir="auto">Kaakai siragu - AI Series articles </p></div></aside><p id="3fd2ec7d-2bab-803c-aba7-ef1ff575a029" class="" dir="auto">
+</p><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-804d-9abd-ca72e56b0e3a" dir="ltr"><div style="width:100%"><p id="3fc2ec7d-2bab-8088-96fc-ee873fd5a7d9" class="" dir="auto">Contact →</p><p id="3fc2ec7d-2bab-80b0-947d-c478f74f8684" class="" dir="auto">Feedback form or section?</p></div></aside><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-8001-a4df-cb3e23c700f8" dir="ltr"><div style="width:100%"><p id="3fc2ec7d-2bab-80c4-beac-f33b02cf7fca" class="" dir="auto">Upcoming works and its flow &amp; execution presentation - ?</p><p id="3fc2ec7d-2bab-804b-bee8-e41dd6cc96e4" class="" dir="auto">Three stages of launching</p></div></aside><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-802f-990e-f843444c51c6" dir="ltr"><div style="width:100%"><p id="3fc2ec7d-2bab-80a9-a0ed-c4805f31b00d" class="" dir="auto">AI Section page </p><p id="3fc2ec7d-2bab-80c8-8da5-fce6847c9a11" class="" dir="auto">→ since current domain focus is majorily AI </p><p id="3fc2ec7d-2bab-8048-9b86-d33d555a20ef" class="" dir="auto">→ presenting complete AI related aspects &amp; stuffs</p></div></aside><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-8079-9880-e9a01f4ef936" dir="ltr"><div style="width:100%"><figure id="3fc2ec7d-2bab-809a-9faa-cae26fdac89b" class="link-to-page"><a href="Recognition%203fc2ec7d2bab809a9faacae26fdac89b.html" data-notion-page-id="3fc2ec7d-2bab-809a-9faa-cae26fdac89b" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f">Recognition</a></figure></div></aside><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-8056-bc5d-eed98874ce4f" dir="ltr"><div style="width:100%"><figure id="3fc2ec7d-2bab-8079-adc5-da8a96edd625" class="link-to-page"><a href="Interviews%203fc2ec7d2bab8079adc5da8a96edd625.html" data-notion-page-id="3fc2ec7d-2bab-8079-adc5-da8a96edd625" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f">Interviews</a></figure></div></aside><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3fc2ec7d-2bab-80ce-b6b8-e32da376ccbc" dir="ltr"><div style="width:100%"><figure id="3fc2ec7d-2bab-80ba-8786-e92cc587b78c" class="link-to-page"><a href="Youtube%203fc2ec7d2bab80ba8786e92cc587b78c.html" data-notion-page-id="3fc2ec7d-2bab-80ba-8786-e92cc587b78c" data-notion-space-id="a098dbe5-cf7c-4b70-8895-43da85d1c27f">Youtube</a></figure></div></aside><p id="3fd2ec7d-2bab-8009-99a9-eaa25475ceab" class="" dir="auto">
+</p><p id="3fd2ec7d-2bab-8060-8db7-ea58e0c0e55f" class="" dir="auto">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
